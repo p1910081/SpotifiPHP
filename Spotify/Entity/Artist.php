@@ -3,22 +3,24 @@
 
 namespace App\Entity;
 
-class Artist
+class Artist extends Model
 {
-
+    public ?string $table = 'artist';
     public string|null $id;
     public $name;
     public $img;
     public int|null $followers;
     public $link;
+    public bool $fav;
 
-    public function __construct($id, $name, $img, $followers, $link)
+    public function __construct($id, $name, $img, $followers, $link, $fav)
     {
         $this->id = $id;
         $this->name = $name;
         $this->img = $img;
         $this->followers = $followers;
         $this->link = $link;
+        $this->fav = $fav;
     }
 
     public function display(): ?string

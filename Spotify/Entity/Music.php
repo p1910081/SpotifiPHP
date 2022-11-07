@@ -2,8 +2,9 @@
 
 namespace App\Entity;
 
-class Music
+class Music extends Model
 {
+    public ?string $table = 'music';
     public string|null $id;
     public $name;
     public $img;

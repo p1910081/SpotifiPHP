@@ -39,9 +39,9 @@ class Model extends Db
         return $this->requete('SELECT * FROM ' . $this->table . ' WHERE ' . $fieldsList, $values)->fetchAll();
     }
 
-    public function find(int $id)
+    public function find(string $id)
     {
-        return $this->requete("SELECT * FROM {$this->table} WHERE id = $id")->fetch();
+        return $this->requete("SELECT * FROM {$this->table} WHERE id = '$id'")->fetch();
     }
 
     public function create(): bool|\PDOStatement

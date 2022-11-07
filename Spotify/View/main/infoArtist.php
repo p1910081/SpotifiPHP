@@ -18,5 +18,4 @@ foreach ($listAlbums as $album){
             echo "<br>";
         }
     }
-
 }

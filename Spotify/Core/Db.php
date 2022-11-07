@@ -9,13 +9,13 @@ use PDOException;
 class Db extends PDO
 {
     // Instance unique de la classe
-    private static Db $instance;
+    private static $instance;
 
     // Informations de connexion
     private const DBHOST = 'localhost';
     private const DBUSER = 'root';
-    private const DBPASS = '';
-    private const DBNAME = 'demo';
+    private const DBPASS = 'root';
+    private const DBNAME = 'spotifi';
 
     private function __construct()
     {
