@@ -23,9 +23,10 @@ class ArtistController extends Controller
         $result_artist = curl_exec($ch);
         $artist = json_decode($result_artist);
         $artist =  new Artist($artist->id, $artist->name, $artist->images[0]->url, $artist->followers->total, $artist->external_urls->spotify);
-        $artist->create();
+        if(!$artist->find($artist->id)){ $artist->create();}
 
-       
+        $data = $artist->name;
+        $this->render('main/home', compact("data"));
     }
     public function info($id_artist)
     {
