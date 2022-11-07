@@ -2,26 +2,28 @@
 use App\Entity\Artist;
 use App\Entity\Model;
 
+
+
 $ch = curl_init();
 curl_setopt($ch, CURLOPT_URL, "https://api.spotify.com/v1/search?q=".$data."&type=artist");
 curl_setopt($ch, CURLOPT_HTTPHEADER, array('Authorization: Bearer ' . $_SESSION['token'] ));
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 $result = curl_exec($ch);
+
 $arr = json_decode($result)->artists->items;
-var_dump($arr);
 $artists = [];
 foreach ($arr as $element) {
 
-    if(isset($element->images))
+    if($element?->images)
     {
-        $artist =  new Artist($element->id, $element->name, $element->images[0]->url, $element->followers->total, $element->external_urls->spotify,false);
-        if(!$artist->find($element->id)){ $artist->create();}
+        $artist =  new Artist($element->id, $element->name, $element->images[0]->url, $element->followers->total, $element->external_urls->spotify);
+        //if(!$artist->find($element->id)){ $artist->create();}
         $artists[] = $artist;
 
     }
     else{
-        $artist =  new Artist($element->id, $element->name, "", $element->followers->total, $element->external_urls->spotify,false);
-        if(!$artist->find($element->id)){ $artist->create();}
+        $artist =  new Artist($element->id, $element->name, "", $element->followers->total, $element->external_urls->spotify);
+        //if(!$artist->find($element->id)){ $artist->create();}
         $artists[] = $artist;
     }
 

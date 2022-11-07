@@ -11,16 +11,14 @@ class Artist extends Model
     public $img;
     public int|null $followers;
     public $link;
-    public bool $fav;
 
-    public function __construct($id, $name, $img, $followers, $link, $fav)
+    public function __construct($id, $name, $img, $followers, $link)
     {
         $this->id = $id;
         $this->name = $name;
         $this->img = $img;
         $this->followers = $followers;
         $this->link = $link;
-        $this->fav = $fav;
     }
 
     public function display(): ?string
