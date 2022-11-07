@@ -1,31 +1,26 @@
 <?php
 
-
 namespace App\Entity;
 
-class Artist
+class Album
 {
-
     public string|null $id;
     public $name;
     public $img;
-    public int|null $followers;
     public $link;
 
-    public function __construct($id, $name, $img, $followers, $link)
+    public function __construct($id, $name, $img, $link)
     {
         $this->id = $id;
         $this->name = $name;
         $this->img = $img;
-        $this->followers = $followers;
         $this->link = $link;
     }
 
     public function display(): ?string
     {
-        return $this->id . "<br>" . "<img src=" . $this->img . " >" . "<br>" . $this->name ." et les followers : ". $this->followers . "<br>";
+        return $this->id . "<br>" . "<img src=" . $this->img . " >" . "<br>" . $this->name . "<br>";
     }
-
 
     /**
      * @return string|null
@@ -76,22 +71,6 @@ class Artist
     }
 
     /**
-     * @return int|null
-     */
-    public function getFollowers(): ?int
-    {
-        return $this->followers;
-    }
-
-    /**
-     * @param int|null $followers
-     */
-    public function setFollowers(?int $followers): void
-    {
-        $this->followers = $followers;
-    }
-
-    /**
      * @return mixed
      */
     public function getLink()
@@ -106,6 +85,5 @@ class Artist
     {
         $this->link = $link;
     }
-
 
 }

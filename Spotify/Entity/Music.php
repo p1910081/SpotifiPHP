@@ -1,32 +1,29 @@
 <?php
 
-
 namespace App\Entity;
 
-class Artist
+class Music
 {
-
     public string|null $id;
     public $name;
     public $img;
-    public int|null $followers;
-    public $link;
 
-    public function __construct($id, $name, $img, $followers, $link)
+    /**
+     * @param string|null $id
+     * @param $name
+     * @param $img
+     */
+    public function __construct(?string $id, $name, $img)
     {
         $this->id = $id;
         $this->name = $name;
         $this->img = $img;
-        $this->followers = $followers;
-        $this->link = $link;
     }
 
     public function display(): ?string
     {
-        return $this->id . "<br>" . "<img src=" . $this->img . " >" . "<br>" . $this->name ." et les followers : ". $this->followers . "<br>";
+        return "L'id de la musique ".$this->id . "<br>" . "<img src=" . $this->img . " >" . "<br> Nom de la music : " . $this->name . "<br>";
     }
-
-
     /**
      * @return string|null
      */
@@ -75,37 +72,6 @@ class Artist
         $this->img = $img;
     }
 
-    /**
-     * @return int|null
-     */
-    public function getFollowers(): ?int
-    {
-        return $this->followers;
-    }
-
-    /**
-     * @param int|null $followers
-     */
-    public function setFollowers(?int $followers): void
-    {
-        $this->followers = $followers;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getLink()
-    {
-        return $this->link;
-    }
-
-    /**
-     * @param mixed $link
-     */
-    public function setLink($link): void
-    {
-        $this->link = $link;
-    }
 
 
 }

@@ -3,7 +3,7 @@ namespace App;
 
 class Autoloader
 {
-    static function register(): void
+    static function register()
     {
         spl_autoload_register([
             __CLASS__,
@@ -11,9 +11,9 @@ class Autoloader
         ]);
     }
 
-    static function autoload($class): void
+    static function autoload($class)
     {
-        // On récupère dans $Models la totalité du namespace de la classe concernée (App\Client\Compte)
+        // On récupère dans $class la totalité du namespace de la classe concernée (App\Client\Compte)
         // On retire App\ (Client\Compte)
         $class = str_replace(__NAMESPACE__ . '\\', '', $class);
 
