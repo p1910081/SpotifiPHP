@@ -13,6 +13,8 @@ class ArtistController extends Controller
     {
         $data = $_POST['data'];
 
+
+
         $this->render('main/home', compact("data"));
     }
     public function favArtist($id_artist, $data_init)
@@ -32,23 +34,32 @@ class ArtistController extends Controller
 
         $this->render('main/home', compact("data_init"));
     }
-    public function favMusic($id_music, $id_artist)
+    public function favAlbum($id_album, $id_artist)
     {
         $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, "https://api.spotify.com/v1/tracks/".$id_music);
+        var_dump($id_album);
+        curl_setopt($ch, CURLOPT_URL, "https://api.spotify.com/v1/tracks/".$id_album);
         curl_setopt($ch, CURLOPT_HTTPHEADER, array('Authorization: Bearer ' . $_SESSION['token'] ));
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         $result_tracks = curl_exec($ch);
         $tracks = json_decode($result_tracks)->album;
 
-        $music =  new Music($tracks->id, $tracks->name, $tracks->images[0]->url);
+        var_dump($tracks->id);
+        $album =  new Album($tracks->id, $tracks->name, $tracks->images[0]->url, $tracks->external_urls->spotify);
 
-        if($music->find($music->id) === false){ $music->create();}
-        else{
-            $music->delete($music->id);
-        }
+        if($album->find($album->id) === false){ $album->create();}
+        else{$album->delete($tracks->id);}
+
         header('Location: http://localhost:8000/Artist/info/'.$id_artist);
-        //$this->render('main/infoArtist', compact("data_init"));
+    }
+    public function favMusic($id_music, $name_music, $id_artist)
+    {
+        var_dump($id_music);
+        $music = new Music($id_music, $name_music,"");
+        if($music->find($id_music) === false){ $music->create();}
+        else{$music->delete($id_music);}
+
+        header('Location: http://localhost:8000/Artist/info/'.$id_artist);
     }
     public function info($id_artist)
     {
