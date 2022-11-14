@@ -7,15 +7,18 @@ use App\Entity\Music;
 
 echo "Info d'artist<br>";
 echo $artist->display() ;
-foreach ($listAlbums as $album){
+
+
+
+
+foreach ($listResp as $tab){
     echo "Albume -> ";
-    echo $album->display();
+    echo $tab[0]->display();
     echo "<br>";
-    foreach ($listlistMusics as $list){
-        foreach ($list as $music){
-            echo "musique -> ";
-            echo $music->display();
-            echo "<br>";
-        }
+    foreach ($tab[1] as $music){
+        echo "music -> ";
+        echo $music->display();
+        echo '<form action="/artist/favMusic/'.$music->getId().'/'.$artist->getId().'" method="post"><button type="submit">Mise en fav</button></form>' ;
+        echo "<br>";
     }
 }

@@ -67,7 +67,7 @@ class Main
             $controller = new MainController;
 
             // On appelle la méthode index
-            $controller->index();
+            $controller->form();
         }
     }
 }
